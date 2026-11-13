@@ -341,6 +341,7 @@ function computePricing(state) {
 document.addEventListener('DOMContentLoaded', () => {
   initStickyHeader();
   renderInstruments('all');
+  renderHomeInstrumentsPreview();
   initInstrumentFilters();
   renderScopeSystem('structure');
   initScopeTabs();
@@ -350,6 +351,32 @@ document.addEventListener('DOMContentLoaded', () => {
   initBookingForm();
   initReportModal();
 });
+
+function renderHomeInstrumentsPreview() {
+  const previewGrid = document.getElementById('homeInstrumentsPreviewGrid');
+  if (!previewGrid) return;
+  const topSix = INSTRUMENTS_DATA.slice(0, 6);
+  previewGrid.innerHTML = topSix.map(inst => `
+    <article class="instrument-card">
+      <div>
+        <div class="inst-top">
+          <div class="inst-icon-box" aria-hidden="true">${inst.icon}</div>
+          <span class="inst-cat-tag">${inst.categoryLabel}</span>
+        </div>
+        <h3 class="inst-name">${inst.name}</h3>
+        <div class="inst-en">${inst.enName}</div>
+        <div class="inst-spec-bar">⚙️ ${inst.spec}</div>
+        <p class="inst-desc">${inst.desc}</p>
+      </div>
+      <div class="inst-defects">
+        <div class="inst-defects-title">🔍 常揪出之關鍵施工瑕疵：</div>
+        <div class="inst-defect-tags">
+          ${inst.defects.map(d => `<span class="defect-chip">${d}</span>`).join('')}
+        </div>
+      </div>
+    </article>
+  `).join('');
+}
 
 function initReportModal() {
   const modal = document.getElementById('reportPreviewModal');
@@ -606,24 +633,31 @@ function initCalculator() {
   if (applyToFormBtn) {
     applyToFormBtn.addEventListener('click', () => {
       const res = computePricing(calcState);
+      const planText = calcState.planType === 'bundle' ? '初驗＋優惠複驗全包方案' : '單次完整初驗';
+      const payload = {
+        propertyType: calcState.propertyType === 'condo' ? '電梯大樓 / 華廈' : '透天別墅',
+        ping: `${calcState.ping} 坪`,
+        note: `【線上試算帶入】${res.tierLabel}｜方案：${planText}｜${res.discountNote}｜試算預估費用：NT$ ${res.finalPrice.toLocaleString()}`
+      };
+
+      try {
+        sessionStorage.setItem('anju_calc_quote', JSON.stringify(payload));
+      } catch (e) {}
+
       const formPropSelect = document.getElementById('bookingPropertyType');
       const formPingInput = document.getElementById('bookingPing');
       const formNoteInput = document.getElementById('bookingNote');
 
-      if (formPropSelect) {
-        formPropSelect.value = calcState.propertyType === 'condo' ? '電梯大樓 / 華廈' : '透天別墅';
-      }
-      if (formPingInput) {
-        formPingInput.value = `${calcState.ping} 坪`;
-      }
-      if (formNoteInput) {
-        const planText = calcState.planType === 'bundle' ? '初驗＋優惠複驗全包方案' : '單次完整初驗';
-        formNoteInput.value = `【線上試算帶入】${res.tierLabel}｜方案：${planText}｜${res.discountNote}｜試算預估費用：NT$ ${res.finalPrice.toLocaleString()}`;
-      }
-
-      const contactSection = document.getElementById('contact');
-      if (contactSection) {
-        contactSection.scrollIntoView({ behavior: 'smooth' });
+      if (formPropSelect && formPingInput && formNoteInput) {
+        formPropSelect.value = payload.propertyType;
+        formPingInput.value = payload.ping;
+        formNoteInput.value = payload.note;
+        const contactSection = document.getElementById('contact') || document.getElementById('instantBookingForm');
+        if (contactSection) {
+          contactSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      } else {
+        window.location.href = 'contact.html#bookingFormCard';
       }
     });
   }
@@ -652,6 +686,20 @@ function initBookingForm() {
   const copyBtn = document.getElementById('copyBookingTextBtn');
 
   if (!form) return;
+
+  // 若從「收費方式與試算專頁 (pricing.html)」帶入試算結果，自動填入表單欄位
+  try {
+    const savedQuote = sessionStorage.getItem('anju_calc_quote');
+    if (savedQuote) {
+      const parsed = JSON.parse(savedQuote);
+      const formPropSelect = document.getElementById('bookingPropertyType');
+      const formPingInput = document.getElementById('bookingPing');
+      const formNoteInput = document.getElementById('bookingNote');
+      if (formPropSelect && parsed.propertyType) formPropSelect.value = parsed.propertyType;
+      if (formPingInput && parsed.ping) formPingInput.value = parsed.ping;
+      if (formNoteInput && parsed.note) formNoteInput.value = parsed.note;
+    }
+  } catch (e) {}
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();

@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>收費方式與線上費用試算｜安居科技驗屋 — 安居科技有限公司</title>
+  <meta name="description" content="安居科技驗屋採主建物＋陽台實際坪數透明計價，不包含公設與車位灌水。提供線上10秒即時驗屋費用試算器、提早14天早鳥9折優惠、同社區團購價與首波案例授權現折$1,000專案。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&family=Noto+Sans+TC:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Top Promo Bar -->
+  <div class="top-promo-bar">
+    <div class="container top-promo-inner">
+      <div class="promo-badges">
+        <span class="promo-tag">台中交屋季專案</span>
+        <span>提早 14 天預約享 <strong>早鳥 9 折優惠</strong> ｜ 同社區滿 3 戶享 <strong>團購專案價</strong> ｜ 首波案例匿名授權分享 <strong>現折 $1,000</strong></span>
+      </div>
+      <div class="promo-contact-quick">
+        <span>📍 大台中全區免車馬費</span>
+        <a href="tel:0422588899" class="mono-num">📞 04-2258-8899</a>
+        <a href="contact.html">💬 LINE 官方帳號：@anju-inspect</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky Header -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo" aria-label="安居科技驗屋首頁">
+        <div class="logo-mark">安</div>
+        <div class="brand-text">
+          <div class="brand-name">
+            安居科技驗屋
+            <span class="region-pill">台中總部</span>
+          </div>
+          <span class="brand-sub">ANJU TECHNOLOGY HOME INSPECTION CO., LTD.</span>
+        </div>
+      </a>
+
+      <nav class="main-nav" id="mainNav" aria-label="主導覽列">
+        <a href="index.html" class="nav-link">首頁</a>
+        <a href="instruments.html" class="nav-link">精密檢驗儀器</a>
+        <a href="certifications.html" class="nav-link">國家專業證照</a>
+        <a href="process.html" class="nav-link">檢驗細項與流程</a>
+        <a href="pricing.html" class="nav-link active">收費方式與試算</a>
+        <a href="cases.html" class="nav-link">案例分享</a>
+        <a href="contact.html" class="nav-link">聯絡預約</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="pricing.html" class="btn btn-outline btn-sm">🧮 費用試算</a>
+        <a href="contact.html" class="btn btn-primary btn-sm">立即預約驗屋</a>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="開啟選單">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Subpage Hero -->
+  <section class="page-hero bg-blueprint">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="麵包屑導覽">
+        <a href="index.html">首頁</a>
+        <span>/</span>
+        <span>收費方式與線上費用試算</span>
+      </nav>
+      <div class="eyebrow-badge">🧮 TRANSPARENT PRICING & INSTANT CALCULATOR</div>
+      <h1 class="page-hero-title">公開透明收費標準 ＆ 線上即時費用試算</h1>
+      <p class="page-hero-desc">
+        安居科技有限公司堅持<strong>以「主建物＋附屬建物（陽台）」之實際室內坪數計價</strong>（絕不灌水公設與車位坪數），平假日同價、大台中全區免收車馬費，驗屋完畢確認滿意後再支付尾款。
+      </p>
+    </div>
+  </section>
+
+  <!-- Pricing Calculator & Tables -->
+  <section class="section section-subtle">
+    <div class="container">
+      <!-- Interactive Calculator Shell -->
+      <div class="calculator-shell">
+        <div class="calc-controls">
+          <div>
+            <div class="calc-group-label">
+              <span>1. 選擇房屋建物類型</span>
+              <span style="font-size:0.78rem; color:var(--text-muted);">預售屋交屋／新成屋／中古屋皆適用</span>
+            </div>
+            <div class="calc-radio-grid">
+              <button type="button" class="calc-option-btn selected" data-calc-prop="condo">
+                <span class="calc-option-title">🏢 電梯大樓 ／ 華廈</span>
+                <span class="calc-option-sub">單層平面住宅（2房～4房、大坪數）</span>
+              </button>
+              <button type="button" class="calc-option-btn" data-calc-prop="house">
+                <span class="calc-option-title">🏡 透天別墅 ／ 電梯墅</span>
+                <span class="calc-option-sub">含多樓層、頂樓防水、外牆與獨立水電</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="ping-slider-box">
+            <div class="ping-display-row">
+              <span class="calc-group-label" style="margin-bottom:0;">2. 調整「主建物＋陽台」實際坪數</span>
+              <span class="ping-big-num" id="pingValueDisplay">26 坪</span>
+            </div>
+            <input type="range" id="pingRangeSlider" class="ping-range-input" min="12" max="100" step="1" value="26" aria-label="室內加陽台坪數滑桿" />
+            <div class="ping-presets">
+              <span style="font-size:0.78rem; color:var(--text-muted); align-self:center; margin-right:4px;">快速選擇：</span>
+              <button type="button" class="preset-chip" data-ping-preset="18">18坪 (精品兩房)</button>
+              <button type="button" class="preset-chip active" data-ping-preset="26">26坪 (標準三房)</button>
+              <button type="button" class="preset-chip" data-ping-preset="36">36坪 (大三房/四房)</button>
+              <button type="button" class="preset-chip" data-ping-preset="46">46坪 (中大坪數)</button>
+              <button type="button" class="preset-chip" data-ping-preset="65">65坪 (標準透天)</button>
+            </div>
+          </div>
+
+          <div>
+            <div class="calc-group-label">3. 選擇檢驗服務方案</div>
+            <div class="calc-radio-grid">
+              <button type="button" class="calc-option-btn selected" data-calc-plan="single">
+                <span class="calc-option-title">🔍 單次完整初驗方案</span>
+                <span class="calc-option-sub">含 12 大儀器全檢＋現場交接＋精裝報告</span>
+              </button>
+              <button type="button" class="calc-option-btn" data-calc-plan="bundle">
+                <span class="calc-option-title">🛡️ 初驗＋複驗安心全包</span>
+                <span class="calc-option-sub">複驗享專案加購價（原價4折，全包僅+30%）</span>
+              </button>
+            </div>
+          </div>
+
+          <div>
+            <div class="calc-group-label">4. 套用優惠專案（可擇一最優方案）</div>
+            <div class="calc-radio-grid">
+              <button type="button" class="calc-option-btn selected" data-calc-discount="early">
+                <span class="calc-option-title">⏰ 早鳥預約優惠（9 折）</span>
+                <span class="calc-option-sub">於預計驗屋日前 14 天完成付訂預約</span>
+              </button>
+              <button type="button" class="calc-option-btn" data-calc-discount="case">
+                <span class="calc-option-title">📸 早鳥9折＋首波案例授權折$1,000</span>
+                <span class="calc-option-sub">同意匿名授權缺失照片作為官網案例分享</span>
+              </button>
+              <button type="button" class="calc-option-btn" data-calc-discount="group">
+                <span class="calc-option-title">🏘️ 同社區團購專案（3戶以上）</span>
+                <span class="calc-option-sub">同建案住戶揪團滿 3 戶享團購最低價</span>
+              </button>
+              <button type="button" class="calc-option-btn" data-calc-discount="none">
+                <span class="calc-option-title">📌 一般標準預約（臨時急件）</span>
+                <span class="calc-option-sub">驗屋日前 14 天內之一般標準報價</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Calculator Output Panel -->
+        <div class="calc-result-panel">
+          <div>
+            <span class="eyebrow-badge" style="margin-bottom:10px;">📊 即時透明報價試算結果</span>
+            <div id="calcTierLabel" style="font-size:1.05rem; font-weight:800; color:#E2E8F0;">
+              電梯大樓・21 ~ 30 坪標準兩/三房
+            </div>
+
+            <div class="calc-price-tag">
+              <div class="calc-original-price" id="calcOriginalPrice">原價 NT$ 12,800</div>
+              <div class="calc-final-price" id="calcFinalPrice">NT$ 11,500 <small>起</small></div>
+              <div id="calcDiscountNote" style="font-size:0.82rem; color:#FBBF24; margin-top:6px; font-weight:700;">
+                已套用「提早 14 天預約早鳥 9 折優惠」
+              </div>
+            </div>
+
+            <div class="calc-specs-grid">
+              <div class="calc-spec-item">
+                <div class="calc-spec-label">預計派遣師資配置</div>
+                <div class="calc-spec-val" id="calcTeamCount">3 位專業工程師</div>
+              </div>
+              <div class="calc-spec-item">
+                <div class="calc-spec-label">現場精密檢測時間</div>
+                <div class="calc-spec-val" id="calcDuration">約 2.5 ~ 3 小時</div>
+              </div>
+            </div>
+
+            <ul class="calc-included-list">
+              <li>✔ 包含 12 大精密科學儀器全套檢測（不另加收儀器費）</li>
+              <li>✔ 包含現場陪同屋主與建商工務逐項會勘交接</li>
+              <li>✔ 包含 48 小時內交付雲端高畫質＋PDF精裝缺失報告</li>
+              <li>✔ 預約僅需訂金 $3,000，<strong>驗屋完畢確認滿意再付尾款</strong></li>
+            </ul>
+          </div>
+
+          <button type="button" id="applyCalcToFormBtn" class="btn btn-amber btn-lg" style="width:100%;">
+            📩 將此試算方案帶入預約頁面 ➔
+          </button>
+        </div>
+      </div>
+
+      <!-- Full Transparent Pricing Tier Tables -->
+      <div class="section-header" style="margin-bottom:36px;">
+        <span class="section-tag">COMPLETE PRICING TABLES</span>
+        <h2 class="section-title">電梯大樓 ＆ 透天別墅 收費級距總覽表</h2>
+      </div>
+
+      <div class="pricing-tables-grid">
+        <!-- Condo Table -->
+        <div class="pricing-table-card">
+          <div class="pt-header">
+            <div>
+              <h3 style="font-size:1.2rem; font-weight:800;">🏢 電梯大樓 ／ 華廈 收費級距表</h3>
+              <span style="font-size:0.8rem; color:#CBD5E1;">以權狀或買賣契約之「主建物＋陽台」實坪計算</span>
+            </div>
+            <span class="promo-tag">早鳥 9 折</span>
+          </div>
+          <table class="pt-table">
+            <thead>
+              <tr>
+                <th>實坪級距（主建物＋陽台）</th>
+                <th>派遣師資</th>
+                <th>標準定價</th>
+                <th>早鳥 9 折優惠</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>20 坪（含）以內</strong> <span style="font-size:0.78rem;color:var(--text-muted);">1~2房</span></td>
+                <td>2 ~ 3 位</td>
+                <td class="pt-price-col">NT$ 11,000</td>
+                <td class="pt-early-col">NT$ 9,900</td>
+              </tr>
+              <tr>
+                <td><strong>21 ~ 30 坪</strong> <span style="font-size:0.78rem;color:var(--text-muted);">標準2~3房</span></td>
+                <td>3 位</td>
+                <td class="pt-price-col">NT$ 12,800</td>
+                <td class="pt-early-col">NT$ 11,500</td>
+              </tr>
+              <tr>
+                <td><strong>31 ~ 40 坪</strong> <span style="font-size:0.78rem;color:var(--text-muted);">大3房~4房</span></td>
+                <td>3 ~ 4 位</td>
+                <td class="pt-price-col">NT$ 14,800</td>
+                <td class="pt-early-col">NT$ 13,300</td>
+              </tr>
+              <tr>
+                <td><strong>41 ~ 50 坪</strong> <span style="font-size:0.78rem;color:var(--text-muted);">中大坪數</span></td>
+                <td>4 位</td>
+                <td class="pt-price-col">NT$ 16,800</td>
+                <td class="pt-early-col">NT$ 15,100</td>
+              </tr>
+              <tr>
+                <td><strong>51 坪以上</strong> <span style="font-size:0.78rem;color:var(--text-muted);">豪宅/合併戶</span></td>
+                <td>4 ~ 5 位</td>
+                <td colspan="2" style="font-size:0.85rem; color:var(--text-secondary);">超過 50 坪部分，每坪加收 $300（享同等早鳥折扣）</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- House / Villa Table -->
+        <div class="pricing-table-card">
+          <div class="pt-header pt-header-透天">
+            <div>
+              <h3 style="font-size:1.2rem; font-weight:800;">🏡 透天別墅 ／ 電梯別墅 收費級距表</h3>
+              <span style="font-size:0.8rem; color:#CBD5E1;">含全棟各樓層、露臺、屋頂防水層與獨立水電檢測</span>
+            </div>
+            <span class="promo-tag">早鳥 9 折</span>
+          </div>
+          <table class="pt-table">
+            <thead>
+              <tr>
+                <th>建坪級距（室內總面積）</th>
+                <th>派遣師資</th>
+                <th>標準定價</th>
+                <th>早鳥 9 折優惠</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>50 坪（含）以內</strong></td>
+                <td>4 位</td>
+                <td class="pt-price-col">NT$ 18,800</td>
+                <td class="pt-early-col">NT$ 16,900</td>
+              </tr>
+              <tr>
+                <td><strong>51 ~ 70 坪</strong> <span style="font-size:0.78rem;color:var(--text-muted);">標準透天</span></td>
+                <td>4 ~ 5 位</td>
+                <td class="pt-price-col">NT$ 22,800</td>
+                <td class="pt-early-col">NT$ 20,500</td>
+              </tr>
+              <tr>
+                <td><strong>71 ~ 90 坪</strong> <span style="font-size:0.78rem;color:var(--text-muted);">電梯別墅</span></td>
+                <td>5 ~ 6 位</td>
+                <td class="pt-price-col">NT$ 26,800</td>
+                <td class="pt-early-col">NT$ 24,100</td>
+              </tr>
+              <tr>
+                <td><strong>91 坪以上</strong> <span style="font-size:0.78rem;color:var(--text-muted);">獨棟莊園</span></td>
+                <td>6 位以上</td>
+                <td colspan="2" style="font-size:0.85rem; color:var(--text-secondary);">超過 90 坪部分，每坪加收 $350（享專案報價）</td>
+              </tr>
+              <tr>
+                <td colspan="4" style="background:#FFFBEB; font-size:0.85rem; color:#92400E;">
+                  💡 <strong>複驗與付款說明：</strong>單獨加購複驗費用為初驗定價之 40%（初驗時一併預約「初＋複驗全包方案」僅需加價 30%）。所有方案皆簽訂正式驗屋保障合約，驗屋完畢滿意再付尾款。
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="brand-logo" style="margin-bottom:14px;">
+            <div class="logo-mark">安</div>
+            <div class="brand-text">
+              <div class="brand-name" style="color:#FFFFFF;">安居科技驗屋</div>
+              <span class="brand-sub" style="color:#94A3B8;">ANJU TECHNOLOGY CO., LTD.</span>
+            </div>
+          </div>
+          <p style="font-size:0.88rem; line-height:1.6;">
+            安居科技有限公司 — 大台中地區高規格科學驗屋機構。結合國家級乙級室內裝修／水電證照團隊與 12 大精密非破壞性檢測儀器，為您的新家品質嚴格把關。
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>網站分頁導覽</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">首頁（關於安居科技）</a></li>
+            <li><a href="instruments.html">12 大精密檢驗儀器專頁</a></li>
+            <li><a href="certifications.html">國家級專業證照專頁</a></li>
+            <li><a href="process.html">120+ 檢驗細項與流程專頁</a></li>
+            <li><a href="pricing.html">收費標準與線上試算專頁</a></li>
+            <li><a href="cases.html">案例分享與缺失示範專頁</a></li>
+            <li><a href="contact.html">聯絡我們與線上預約專頁</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>熱門台中驗屋專區</h4>
+          <ul class="footer-links">
+            <li><a href="contact.html">北屯 14 期 / 機捷特區驗屋</a></li>
+            <li><a href="contact.html">西屯水湳經貿 / 七期驗屋</a></li>
+            <li><a href="contact.html">南屯單元二三五 / 13 期驗屋</a></li>
+            <li><a href="contact.html">烏日高鐵特區新成屋驗屋</a></li>
+            <li><a href="contact.html">沙鹿 / 梧棲台中港特區驗屋</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>聯絡我們（台中總部）</h4>
+          <ul class="footer-links">
+            <li>📞 預約專線：<a href="tel:0422588899" class="mono-num" style="color:#5EEAD4;">04-2258-8899</a></li>
+            <li>📱 工程師專線：<span class="mono-num">0912-345-678</span></li>
+            <li>💬 LINE 官方帳號：<span class="mono-num" style="color:#FFFFFF;">@anju-inspect</span></li>
+            <li>✉️ 電子信箱：<span class="mono-num">service@anju-inspect.com.tw</span></li>
+            <li>📍 地址：台中市西屯區市政北二路 282 號 15 樓</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 安居科技有限公司 (Anju Technology Home Inspection Co., Ltd.) All Rights Reserved.</div>
+        <div>科學驗屋・正式保障合約・國家證照團隊・大台中全區免車馬費</div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="floating-cta">
+    <a href="contact.html" class="float-btn btn-line"><span>💬</span><span>LINE 預約諮詢</span></a>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
