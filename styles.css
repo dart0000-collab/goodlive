@@ -716,6 +716,106 @@ ul {
   color: var(--text-secondary);
 }
 
+/* Homepage Brand Story, Vision & Philosophy Layout */
+.story-card {
+  background: var(--bg-surface);
+  border: 1.5px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  padding: 48px 52px;
+  box-shadow: var(--shadow-md);
+  max-width: 960px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.story-lead {
+  font-size: 1.22rem;
+  font-weight: 700;
+  color: var(--brand-navy);
+  line-height: 1.75;
+  margin-bottom: 22px;
+}
+
+.story-text {
+  font-size: 1.04rem;
+  color: var(--text-secondary);
+  line-height: 1.9;
+  margin-bottom: 18px;
+}
+
+.vision-pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 36px;
+}
+
+.vision-pillar-card {
+  background: var(--bg-surface);
+  border: 1.5px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 34px 28px;
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+  transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+
+.vision-pillar-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--brand-amber);
+}
+
+.vision-illo-circle {
+  width: 76px;
+  height: 76px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FFF7EC 0%, #EEF6F2 100%);
+  border: 1.5px dashed var(--border-strong);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ideal-list-wrap {
+  max-width: 920px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.ideal-row-card {
+  background: var(--bg-surface);
+  border: 1.5px solid var(--border-light);
+  border-left: 6px solid var(--brand-amber);
+  border-radius: var(--radius-lg);
+  padding: 32px 36px;
+  box-shadow: var(--shadow-sm);
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 24px;
+  align-items: center;
+}
+
+.ideal-row-card:nth-child(2) {
+  border-left-color: var(--brand-teal);
+}
+
+@media (max-width: 960px) {
+  .vision-pillars-grid {
+    grid-template-columns: 1fr;
+  }
+  .story-card {
+    padding: 32px 24px;
+  }
+  .ideal-row-card {
+    grid-template-columns: 1fr;
+    padding: 24px;
+  }
+}
+
 /* ==========================================================================
    3. Section Common Headers
    ========================================================================== */
